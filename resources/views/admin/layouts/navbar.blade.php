@@ -11,39 +11,29 @@
         <div class="dropdown">
 
             <button class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">
-
                 {{ auth()->user()->name }}
-
             </button>
 
             <ul class="dropdown-menu">
 
                 <li>
-
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="{{ route('profile.edit') }}">
                         Profile
                     </a>
-
                 </li>
 
                 <li>
-
                     <hr class="dropdown-divider">
-
                 </li>
 
                 <li>
-
                     <form method="POST" action="{{ route('logout') }}">
-
                         @csrf
 
-                        <button class="dropdown-item">
+                        <button type="submit" class="dropdown-item">
                             Logout
                         </button>
-
                     </form>
-
                 </li>
 
             </ul>

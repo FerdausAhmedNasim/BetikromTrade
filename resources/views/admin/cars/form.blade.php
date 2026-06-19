@@ -61,7 +61,7 @@
             Details
         </label>
 
-        <textarea name="details" rows="5" class="form-control">{{ old('details', $car->details ?? '') }}</textarea>
+        <textarea name="details" id="editor">{{ old('details', $car->details ?? '') }}</textarea>
 
         @error('details')
             <small class="text-danger">
@@ -72,3 +72,5 @@
     </div>
 
 </div>
+
+

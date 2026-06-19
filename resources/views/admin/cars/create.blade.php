@@ -69,4 +69,18 @@ document
 
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const editor = document.querySelector('#editor');
+
+    if (editor) {
+        ClassicEditor
+            .create(editor)
+            .catch(error => console.error(error));
+    }
+
+});
+</script>
+
 @endsection
