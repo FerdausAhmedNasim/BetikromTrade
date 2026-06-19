@@ -76,6 +76,23 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const editorElement = document.querySelector('#editor');
+
+            if (editorElement) {
+                ClassicEditor
+                    .create(editorElement, {
+                        ckfinder: {
+                            uploadUrl: @json(route('admin.upload.image', ['_token' => csrf_token()]))
+                        }
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            }
+        });
+    </script>
 
     @if (session('success'))
         <script>

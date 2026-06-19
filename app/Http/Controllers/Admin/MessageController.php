@@ -26,7 +26,7 @@ class MessageController extends Controller
      */
     public function toggleDone(ContactMessage $message)
     {
-        $message->done = !$message->done;
+        $message->done = ! $message->done;
         $message->save();
 
         return back()->with('success', 'Status Updated Successfully');

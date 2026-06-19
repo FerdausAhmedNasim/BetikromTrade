@@ -17,7 +17,7 @@ class BannerController extends Controller
         $query = Banner::query();
 
         if ($request->filled('search')) {
-            $query->where('title', 'like', '%' . $request->search . '%');
+            $query->where('title', 'like', '%'.$request->search.'%');
         }
 
         $banners = $query
@@ -42,8 +42,8 @@ class BannerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'  => 'required|max:255',
-            'image'  => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'title' => 'required|max:255',
+            'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
             'status' => 'nullable|boolean',
         ]);
 
@@ -56,8 +56,8 @@ class BannerController extends Controller
         }
 
         Banner::create([
-            'title'  => $request->title,
-            'image'  => $imagePath,
+            'title' => $request->title,
+            'image' => $imagePath,
             'status' => $request->status ?? 1,
         ]);
 
@@ -88,8 +88,8 @@ class BannerController extends Controller
     public function update(Request $request, Banner $banner)
     {
         $request->validate([
-            'title'  => 'required|max:255',
-            'image'  => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'title' => 'required|max:255',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'status' => 'nullable|boolean',
         ]);
 
@@ -103,7 +103,7 @@ class BannerController extends Controller
                 ->store('banners', 'public');
         }
 
-        $banner->title  = $request->title;
+        $banner->title = $request->title;
         $banner->status = $request->status ?? 0;
 
         $banner->save();

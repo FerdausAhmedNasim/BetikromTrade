@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Banner extends Model
+class AboutUs extends Model
 {
+    protected $table = 'about_us';
+
     protected $fillable = [
         'title',
-        'image',
-        'status',
+        'text',
     ];
 }

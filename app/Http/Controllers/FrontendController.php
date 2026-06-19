@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AboutUs;
 use App\Models\Banner;
 use App\Models\Car;
 use App\Models\ContactMessage;
@@ -107,11 +108,11 @@ class FrontendController extends Controller
 
             'name' => 'required',
 
-            'email' => 'required|email',
+            'email' => 'nullable|email',
 
             'phone' => 'required',
 
-            'message' => 'required',
+            'message' => 'nullable',
 
         ]);
 
@@ -135,14 +136,13 @@ class FrontendController extends Controller
 
     public function about()
     {
-        $setting = Setting::first();
+        $about = AboutUs::first();
 
         return view(
             'frontend.about-us',
-            compact('setting')
+            compact('about')
         );
     }
-
 
     public function showrooms()
     {

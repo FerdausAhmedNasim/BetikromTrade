@@ -26,10 +26,10 @@ class SettingController extends Controller
     {
         $request->validate([
             'site_name' => 'required|max:255',
-            'phone'     => 'nullable|max:255',
-            'email'     => 'nullable|email|max:255',
-            'address'   => 'nullable|string',
-            'logo'      => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'phone' => 'nullable|max:255',
+            'email' => 'nullable|email|max:255',
+            'address' => 'nullable|string',
+            'logo' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
         $setting = Setting::firstOrNew([]);
@@ -45,9 +45,9 @@ class SettingController extends Controller
         }
 
         $setting->site_name = $request->site_name;
-        $setting->phone     = $request->phone;
-        $setting->email     = $request->email;
-        $setting->address   = $request->address;
+        $setting->phone = $request->phone;
+        $setting->email = $request->email;
+        $setting->address = $request->address;
 
         $setting->save();
 

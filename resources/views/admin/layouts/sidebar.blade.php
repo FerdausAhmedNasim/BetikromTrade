@@ -52,6 +52,12 @@
         Messages
     </a>
 
+    <a href="{{ route('admin.about-us.edit') }}"
+        class="{{ request()->routeIs('admin.about-us.*') ? 'bg-primary' : '' }}">
+        <i class="bi bi-info-circle"></i>
+        About Us
+    </a>
+
     <a href="{{ route('admin.social-media.edit') }}"
         class="{{ request()->routeIs('admin.social-media.*') ? 'bg-primary' : '' }}">
         <i class="bi bi-share"></i>

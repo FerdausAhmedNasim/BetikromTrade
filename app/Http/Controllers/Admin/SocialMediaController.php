@@ -24,20 +24,20 @@ class SocialMediaController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'facebook'  => 'nullable|url|max:255',
-            'twitter'   => 'nullable|url|max:255',
+            'facebook' => 'nullable|url|max:255',
+            'twitter' => 'nullable|url|max:255',
             'instagram' => 'nullable|url|max:255',
-            'whatsapp'  => 'nullable|max:255',
-            'youtube'   => 'nullable|url|max:255',
+            'whatsapp' => 'nullable|max:255',
+            'youtube' => 'nullable|url|max:255',
         ]);
 
         $socialMedia = SocialMedia::firstOrNew([]);
 
-        $socialMedia->facebook  = $request->facebook;
-        $socialMedia->twitter   = $request->twitter;
+        $socialMedia->facebook = $request->facebook;
+        $socialMedia->twitter = $request->twitter;
         $socialMedia->instagram = $request->instagram;
-        $socialMedia->whatsapp  = $request->whatsapp;
-        $socialMedia->youtube   = $request->youtube;
+        $socialMedia->whatsapp = $request->whatsapp;
+        $socialMedia->youtube = $request->youtube;
 
         $socialMedia->save();
 

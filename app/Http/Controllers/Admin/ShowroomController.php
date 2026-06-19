@@ -17,9 +17,9 @@ class ShowroomController extends Controller
         $query = Showroom::query();
 
         if ($request->filled('search')) {
-            $query->where('name', 'like', '%' . $request->search . '%')
-                ->orWhere('phone', 'like', '%' . $request->search . '%')
-                ->orWhere('address', 'like', '%' . $request->search . '%');
+            $query->where('name', 'like', '%'.$request->search.'%')
+                ->orWhere('phone', 'like', '%'.$request->search.'%')
+                ->orWhere('address', 'like', '%'.$request->search.'%');
         }
 
         $showrooms = $query
@@ -44,22 +44,22 @@ class ShowroomController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'       => 'required|max:255',
-            'phone'      => 'nullable|max:255',
-            'email'      => 'nullable|email|max:255',
-            'address'    => 'required',
+            'name' => 'required|max:255',
+            'phone' => 'nullable|max:255',
+            'email' => 'nullable|email|max:255',
+            'address' => 'required',
             'google_map' => 'nullable|max:255',
-            'status'     => 'nullable|boolean',
+            'status' => 'nullable|boolean',
         ]);
 
         Showroom::create([
-            'name'       => $request->name,
-            'slug'       => Str::slug($request->name) . '-' . uniqid(),
-            'phone'      => $request->phone,
-            'email'      => $request->email,
-            'address'    => $request->address,
+            'name' => $request->name,
+            'slug' => Str::slug($request->name).'-'.uniqid(),
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'address' => $request->address,
             'google_map' => $request->google_map,
-            'status'     => $request->status ?? 1,
+            'status' => $request->status ?? 1,
         ]);
 
         return redirect()
@@ -89,21 +89,21 @@ class ShowroomController extends Controller
     public function update(Request $request, Showroom $showroom)
     {
         $request->validate([
-            'name'       => 'required|max:255',
-            'phone'      => 'nullable|max:255',
-            'email'      => 'nullable|email|max:255',
-            'address'    => 'required',
+            'name' => 'required|max:255',
+            'phone' => 'nullable|max:255',
+            'email' => 'nullable|email|max:255',
+            'address' => 'required',
             'google_map' => 'nullable|max:255',
-            'status'     => 'nullable|boolean',
+            'status' => 'nullable|boolean',
         ]);
 
-        $showroom->name       = $request->name;
-        $showroom->slug       = Str::slug($request->name) . '-' . uniqid();
-        $showroom->phone      = $request->phone;
-        $showroom->email      = $request->email;
-        $showroom->address    = $request->address;
+        $showroom->name = $request->name;
+        $showroom->slug = Str::slug($request->name).'-'.uniqid();
+        $showroom->phone = $request->phone;
+        $showroom->email = $request->email;
+        $showroom->address = $request->address;
         $showroom->google_map = $request->google_map;
-        $showroom->status     = $request->status ?? 0;
+        $showroom->status = $request->status ?? 0;
 
         $showroom->save();
 
