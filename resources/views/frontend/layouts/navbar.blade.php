@@ -1,22 +1,16 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm sticky-top">
     <div class="container">
         <a class="navbar-brand fw-bold d-flex align-items-center" href="{{ url('/') }}">
-    @if($setting->logo ?? null)
-        <img src="{{ asset($setting->logo) }}" alt="{{ $setting->site_name }}" height="40">
-    @else
-        {{ $setting->site_name ?? 'Betikrom Trade' }}
-    @endif
-</a>
 
-        <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-        >
+            @if($setting->logo ?? null)
+                <img src="{{ asset('storage/' . $setting->logo) }}" alt="{{ $setting->site_name }}" height="40">
+            @else
+                {{ $setting->site_name ?? 'Betikrom Trade' }}
+            @endif
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -28,22 +22,26 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('cars*') ? 'active fw-semibold' : '' }}" href="{{ url('/cars') }}">
+                    <a class="nav-link {{ request()->is('cars*') ? 'active fw-semibold' : '' }}"
+                        href="{{ url('/cars') }}">
                         Cars
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('about-us') ? 'active fw-semibold' : '' }}" href="{{ url('/about-us') }}">
+                    <a class="nav-link {{ request()->is('about-us') ? 'active fw-semibold' : '' }}"
+                        href="{{ url('/about-us') }}">
                         About Us
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('showrooms') ? 'active fw-semibold' : '' }}" href="{{ url('/showrooms') }}">
+                    <a class="nav-link {{ request()->is('showrooms') ? 'active fw-semibold' : '' }}"
+                        href="{{ url('/showrooms') }}">
                         Showrooms
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('contact') ? 'active fw-semibold' : '' }}" href="{{ url('/contact') }}">
+                    <a class="nav-link {{ request()->is('contact') ? 'active fw-semibold' : '' }}"
+                        href="{{ url('/contact') }}">
                         Contact
                     </a>
                 </li>
