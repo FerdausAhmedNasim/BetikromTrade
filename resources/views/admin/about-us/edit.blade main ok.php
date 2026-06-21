@@ -65,20 +65,3 @@
 
 </div>
 @endsection
-
-@section('scripts')
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const editorEl = document.querySelector('#editor');
-            if (editorEl && typeof ClassicEditor !== 'undefined') {
-                ClassicEditor
-                    .create(editorEl, {
-                        ckfinder: {
-                            uploadUrl: @json(route('admin.upload.image', ['_token' => csrf_token()]))
-                        }
-                    })
-                    .catch(error => console.error(error));
-            }
-        });
-    </script>
-@endsection

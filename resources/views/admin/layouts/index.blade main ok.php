@@ -146,9 +146,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-{{-- ✅ FIX: CKEditor script ছিল না, সেটাই এডিটর কাজ না করার মূল কারণ --}}
-<script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
-
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -193,14 +190,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     overlay.addEventListener('click', closeSidebar);
 
-    // submenu logic
+    // 🔥 IMPORTANT FIX: submenu logic
     sidebar.querySelectorAll('a').forEach(link => {
 
         link.addEventListener('click', function () {
 
             if (window.innerWidth > 768) return;
 
-            // যদি parent menu (Car/Showroom) হয় → sidebar বন্ধ হবে না
+            // যদি parent menu (Car/Showroom) হয় → sidebar বন্ধ হবে না
             const isParentMenu =
                 this.getAttribute('data-bs-toggle') === 'collapse' ||
                 this.classList.contains('submenu-toggle');
