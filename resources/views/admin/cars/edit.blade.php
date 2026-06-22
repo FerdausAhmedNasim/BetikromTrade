@@ -2,86 +2,125 @@
 
 @section('content')
 
-<div class="card shadow">
+    <div class="card shadow">
 
-    <div class="card-header">
+        <div class="card-header">
 
-        <h4>Edit Car</h4>
+            <h4>Edit Car</h4>
 
-    </div>
+        </div>
 
-    <div class="card-body">
+        <div class="card-body">
 
-        <form
-            action="{{ route('admin.cars.update',$car) }}"
-            method="POST"
-            enctype="multipart/form-data"
-        >
+            <form action="{{ route('admin.cars.update', $car) }}" method="POST" enctype="multipart/form-data">
 
-            @csrf
-            @method('PUT')
+                @csrf
+                @method('PUT')
 
-            @include('admin.cars.form')
+                @include('admin.cars.form')
 
-            <button
-                class="btn btn-primary"
-            >
-                Update Car
-            </button>
+                <button class="btn btn-primary">
+                    Update Car
+                </button>
 
-        </form>
+            </form>
+
+        </div>
 
     </div>
-
-</div>
 
 @endsection
 
 @section('scripts')
 
-<script>
+    <script>
+        // Multiple gallery image preview
+        document.querySelector('input[name="gallery[]"]').addEventListener('change', function () {
+            const previewBox = document.getElementById('galleryPreview');
+            previewBox.innerHTML = '';
 
-document
-.querySelector('input[name=image]')
-.addEventListener('change', function(){
+            Array.from(this.files).forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.width = 100;
+                    img.className = 'border';
+                    previewBox.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            });
+        });
 
-    let file = this.files[0];
+        // Delete existing gallery image via AJAX
+        document.querySelectorAll('.delete-gallery-img').forEach(btn => {
+            btn.addEventListener('click', function () {
+                if (!confirm('Are you sure you want to delete this image?')) return;
 
-    if(file){
+                const id = this.dataset.id;
+                const url = this.dataset.url;
 
-        let reader = new FileReader();
+                fetch(url, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Accept': 'application/json',
+                    },
+                })
+                    .then(res => {
+                        if (res.ok) {
+                            document.getElementById('gallery-img-' + id).remove();
+                        } else {
+                            alert('Delete failed');
+                        }
+                    });
+            });
+        });
+    </script>
 
-        reader.onload = function(e){
+    <script>
 
-            let preview =
-            document.getElementById('preview');
+        document
+            .querySelector('input[name=image]')
+            .addEventListener('change', function () {
 
-            preview.src = e.target.result;
+                let file = this.files[0];
 
-            preview.style.display = 'block';
+                if (file) {
 
-        }
+                    let reader = new FileReader();
 
-        reader.readAsDataURL(file);
+                    reader.onload = function (e) {
 
-    }
+                        let preview =
+                            document.getElementById('preview');
 
-});
+                        preview.src = e.target.result;
 
-</script>
+                        preview.style.display = 'block';
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
+                    }
 
-    const editor = document.querySelector('#editor');
+                    reader.readAsDataURL(file);
 
-    if (editor) {
-        ClassicEditor
-            .create(editor)
-            .catch(error => console.error(error));
-    }
+                }
 
-});
-</script>
+            });
+
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const editor = document.querySelector('#editor');
+
+            if (editor) {
+                ClassicEditor
+                    .create(editor)
+                    .catch(error => console.error(error));
+            }
+
+        });
+    </script>
 
 @endsection

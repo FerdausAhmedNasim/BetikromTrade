@@ -81,14 +81,15 @@ class FrontendController extends Controller
 
     public function carDetails($slug)
     {
-        $car = Car::where(
-            'slug',
-            $slug
-        )->firstOrFail();
+        $car = Car::with('images')
+            ->where('slug', $slug)
+            ->firstOrFail();
+
+        $setting = Setting::first();
 
         return view(
             'frontend.car-details',
-            compact('car')
+            compact('car', 'setting')
         );
     }
 

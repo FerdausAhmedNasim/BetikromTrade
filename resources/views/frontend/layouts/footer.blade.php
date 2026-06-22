@@ -39,19 +39,22 @@
                 <h5 class="fw-bold mb-3 text-uppercase">Social Media</h5>
                 <div class="d-flex flex-column gap-2">
                     @if($social?->facebook)
-                        <a href="{{ $social->facebook }}" target="_blank" rel="noopener" class="text-white text-decoration-none">
+                        <a href="{{ $social->facebook }}" target="_blank" rel="noopener"
+                            class="text-white text-decoration-none">
                             <i class="bi bi-facebook me-2"></i>Facebook
                         </a>
                     @endif
 
                     @if($social?->youtube)
-                        <a href="{{ $social->youtube }}" target="_blank" rel="noopener" class="text-white text-decoration-none">
+                        <a href="{{ $social->youtube }}" target="_blank" rel="noopener"
+                            class="text-white text-decoration-none">
                             <i class="bi bi-youtube me-2"></i>YouTube
                         </a>
                     @endif
 
                     @if($social?->instagram)
-                        <a href="{{ $social->instagram }}" target="_blank" rel="noopener" class="text-white text-decoration-none">
+                        <a href="{{ $social->instagram }}" target="_blank" rel="noopener"
+                            class="text-white text-decoration-none">
                             <i class="bi bi-instagram me-2"></i>Instagram
                         </a>
                     @endif
@@ -62,8 +65,13 @@
 
         <hr class="my-4 border-secondary">
 
-        <div class="text-center text-secondary small">
-            &copy; {{ date('Y') }} {{ $setting->site_name ?? 'Betikrom Trade' }}. All Rights Reserved.
+        <div class="text-center text-secondary small" style="color: #6c757d; font-size: 14px; text-align: center;">
+            Developed by &copy; {{ date('Y') }}
+            <a href="https://web.ferdausahmed.com/" target="_blank"
+                style="text-decoration: none; font-weight: bold; color: #ffffff;">
+                N<span style="color: #ffd200;">Cloud</span> Solutions
+            </a>.
+            All Rights Reserved.
         </div>
     </div>
 </footer>

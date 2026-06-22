@@ -30,6 +30,8 @@ Route::middleware(['auth', 'admin'])
 
         Route::resource('cars', CarController::class);
 
+        Route::resource('cars', CarController::class);
+        Route::delete('cars/images/{carImage}', [CarController::class, 'destroyImage'])->name('cars.images.destroy');
         Route::resource('banners', BannerController::class);
 
         Route::resource('showrooms', ShowroomController::class);
